@@ -54,3 +54,9 @@ Hospital readmissions are costly and can negatively impact patient health. This 
 - **Data Analysis:** EDA, feature engineering, data preprocessing  
 - **Machine Learning:** Logistic Regression, Random Forest, handling imbalanced data (SMOTE, class weighting)  
 - **Evaluation & Visualization:** Accuracy, Precision, Recall, F1-score, Matplotlib, Seaborn
+
+## How to Run
+1. Clone this repository:  
+```bash
+git clone https://github.com/Tlhabane-Mohlala/patient-readmission-prediction.git
+
