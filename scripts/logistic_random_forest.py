@@ -1,8 +1,12 @@
-# Install libraries
-#%pip install imbalanced-learn seaborn
-#%matplotlib inline
+# -----------------------------
+# Install libraries if needed
+# -----------------------------
+# %pip install imbalanced-learn seaborn
+# %matplotlib inline
 
-# Import the libraries
+# -----------------------------
+# Import Libraries
+# -----------------------------
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,20 +20,16 @@ from sklearn.metrics import classification_report, confusion_matrix
 from imblearn.over_sampling import SMOTE
 
 # -----------------------------
-# 1. LOADING THE DATA (SPARK → PANDAS)
+# 1. LOAD DATA (SPARK → PANDAS)
 # -----------------------------
 df_spark = spark.table("default.hospital_readmissions_30_k")
-
-# Convert to pandas
 df = df_spark.toPandas()
 
 # ======================================================
-# PERFORMING EDA 
+# EDA SECTION
 # ======================================================
 
-# -----------------------------
 # 1. Preview & Missing Values
-# -----------------------------
 print("\n----- DATA HEAD -----")
 print(df.head())
 
@@ -47,9 +47,8 @@ plt.figure(figsize=(8,4))
 sns.heatmap(df.isnull(), cbar=False, cmap="viridis")
 plt.title("Missing Values Heatmap")
 plt.show()
-# -----------------------------
+
 # Target distribution
-# -----------------------------
 plt.figure(figsize=(6,4))
 ax = sns.countplot(data=df, x='readmitted_30_days')
 
@@ -87,7 +86,7 @@ y = df['readmitted_30_days']
 # 5. Train-test split
 # -----------------------------
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X, y, test_size=0.2, random_state=42, stratify=y
 )
 
 # -----------------------------
@@ -119,7 +118,7 @@ print(classification_report(y_test, y_pred_log))
 # -----------------------------
 # 9. RANDOM FOREST
 # -----------------------------
-rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
 rf_model.fit(X_train_res, y_train_res)
 y_pred_rf = rf_model.predict(X_test)
 
@@ -151,6 +150,7 @@ feat_importance = pd.DataFrame({
     'Importance': importances
 }).sort_values(by='Importance', ascending=False)
 
+plt.figure(figsize=(8,6))
 sns.barplot(data=feat_importance, x='Importance', y='Feature')
 plt.title("Random Forest Feature Importance")
 plt.show()
