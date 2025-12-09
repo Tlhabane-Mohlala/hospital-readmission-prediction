@@ -16,7 +16,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 from imblearn.over_sampling import SMOTE
 
 # -----------------------------
-# 1. LOAD DATA (SPARK → PANDAS)
+# 1. LOADING THE DATA (SPARK → PANDAS)
 # -----------------------------
 df_spark = spark.table("default.hospital_readmissions_30_k")
 
@@ -24,7 +24,7 @@ df_spark = spark.table("default.hospital_readmissions_30_k")
 df = df_spark.toPandas()
 
 # ======================================================
-# EDA SECTION
+# PERFORMING EDA 
 # ======================================================
 
 # -----------------------------
