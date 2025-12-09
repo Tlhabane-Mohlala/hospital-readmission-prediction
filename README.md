@@ -1,7 +1,5 @@
 # Predicting Patient Readmissions Using Logistic Regression and Random Forest
 
-![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python) ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-0.25-orange?logo=scikit-learn) ![Pandas](https://img.shields.io/badge/Pandas-1.5-brightgreen?logo=pandas) ![NumPy](https://img.shields.io/badge/NumPy-1.25-yellow?logo=numpy)
-
 ## Project Overview
 Hospital readmissions are costly and can negatively impact patient health. This project focuses on predicting which patients are at risk of readmission using demographic and clinical data such as **age, gender, blood pressure, and cholesterol**. Predictive models like **Logistic Regression** and **Random Forest** were applied to identify high-risk patients and support early intervention.
 
